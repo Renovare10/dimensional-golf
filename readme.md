@@ -14,6 +14,7 @@ of see them while changing. Each of the dimensions should have their own unique 
  * Portal holes that transport you to dimensions
  * Portal guns (act just like portal 2)
  * Slops by shading striped lines in the direction of the slope
+ * Black holes that suck you in and destroy your ball
 
 ## Audio Needed
  * Changing dimensions sound
