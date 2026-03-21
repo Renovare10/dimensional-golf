@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c8w2ho0k3a1ub"]
+
+[ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="1_gg43x"]
+[ext_resource type="PackedScene" uid="uid://5vkn5g6f1cej" path="res://obstacles/Wall.tscn" id="2_mllcm"]
+[ext_resource type="PackedScene" uid="uid://3jswqjkbebjp" path="res://obstacles/flag.tscn" id="3_q7ibo"]
+[ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="4_cg8v6"]
+
+[node name="LevelMenu" type="Node2D" unique_id=1966821203]
+
+[node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("1_gg43x")]
+position = Vector2(-212, 0)
+
+[node name="Line2D" parent="." unique_id=1492645752 instance=ExtResource("2_mllcm")]
+position = Vector2(-613, 160)
+points = PackedVector2Array(677, -300, 1000, -300, 1000, -30, 250, -30, 250, -300, 677, -300)
+
+[node name="Flag" parent="." unique_id=1677740083 instance=ExtResource("3_q7ibo")]
+position = Vector2(247, -17)
+
+[node name="Camera" parent="." unique_id=355739319 instance=ExtResource("4_cg8v6")]
