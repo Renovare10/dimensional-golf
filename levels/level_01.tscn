@@ -9,6 +9,7 @@
 
 [node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("1_gg43x")]
 position = Vector2(-212, 0)
+stop_speed_squared = 500.0
 
 [node name="Line2D" parent="." unique_id=1492645752 instance=ExtResource("2_mllcm")]
 position = Vector2(-613, 160)

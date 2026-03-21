@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var ground_friction: float = 0.92
 @export var air_drag: float = 0.99
 
+@export var stop_speed_squared: float = 60.0
+
 func _ready() -> void:
 	$DragLauncher.launch_requested.connect(_on_launch)
 	$DragLauncher.drag_updated.connect($AimVisualizer.update_visuals)
@@ -29,7 +31,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		velocity.x *= ground_friction
 
-	if velocity.length_squared() < 10:
+	# Stop tiny movement so ball doesn't roll forever at crawling speed
+	if velocity.length_squared() < stop_speed_squared:
 		velocity = Vector2.ZERO
 
 func _on_launch(impulse: Vector2) -> void:

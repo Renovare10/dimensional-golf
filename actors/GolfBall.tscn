@@ -27,3 +27,4 @@ script = ExtResource("3_o337p")
 script = ExtResource("4_cokdb")
 
 [node name="ArrowLine" type="Line2D" parent="AimVisualizer" unique_id=856620626]
+width = 5.0
