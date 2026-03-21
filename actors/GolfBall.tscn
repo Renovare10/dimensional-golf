@@ -8,6 +8,8 @@
 radius = 4.0
 
 [node name="GolfBall" type="RigidBody2D" unique_id=2116400916]
+linear_damp = 0.6
+angular_damp = 1.0
 script = ExtResource("1_aroa1")
 
 [node name="Wcircle" type="Sprite2D" parent="." unique_id=1889161642]
