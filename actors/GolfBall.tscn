@@ -8,9 +8,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_jx5ha"]
 radius = 4.0
 
-[node name="GolfBall" type="RigidBody2D" unique_id=2116400916]
-linear_damp = 0.6
-angular_damp = 1.0
+[node name="GolfBall" type="CharacterBody2D" unique_id=108662463]
+motion_mode = 1
 script = ExtResource("1_aroa1")
 
 [node name="Wcircle" type="Sprite2D" parent="." unique_id=1889161642]

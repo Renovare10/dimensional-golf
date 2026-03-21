@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://5vkn5g6f1cej"]
+
+[ext_resource type="Script" uid="uid://c0vt25fywfqes" path="res://obstacles/wall.gd" id="1_18pt8"]
+
+[node name="Line2D" type="Line2D" unique_id=1492645752]
+points = PackedVector2Array(-50, -230, -346, -144, -361, 170, 225, 277, 452, 43, 227, -244, -50, -234)
+script = ExtResource("1_18pt8")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1345329629]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1001213361]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1765385340]

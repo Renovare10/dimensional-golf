@@ -1,8 +1,36 @@
-extends RigidBody2D
+extends CharacterBody2D
+
+@export var gravity: float = 0.0
+@export var bounce: float = 0.75
+@export var side_friction: float = 0.98
+@export var ground_friction: float = 0.92
+@export var air_drag: float = 0.99
 
 func _ready() -> void:
 	$DragLauncher.launch_requested.connect(_on_launch)
 	$DragLauncher.drag_updated.connect($AimVisualizer.update_visuals)
 
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	velocity *= air_drag
+
+	move_and_slide()
+
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var normal = collision.get_normal()
+		var dot = velocity.dot(normal)
+		if dot < 0:
+			velocity = velocity.bounce(normal) * bounce
+			velocity *= side_friction
+
+	if is_on_floor():
+		velocity.x *= ground_friction
+
+	if velocity.length_squared() < 10:
+		velocity = Vector2.ZERO
+
 func _on_launch(impulse: Vector2) -> void:
-	apply_central_impulse(impulse)
+	velocity = impulse

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://3jswqjkbebjp"]
+
+[ext_resource type="Texture2D" uid="uid://bve6gbcldtlm3" path="res://assets/flag.png" id="1_s7dmn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7dmn"]
+
+[node name="Flag" type="StaticBody2D" unique_id=1677740083]
+
+[node name="Flag" type="Sprite2D" parent="." unique_id=949009101]
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("1_s7dmn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1973328580]
+position = Vector2(-3, 16.2)
+scale = Vector2(0.647639, 0.626148)
+shape = SubResource("CircleShape2D_s7dmn")
