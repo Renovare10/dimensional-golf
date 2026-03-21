@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="1_hym4e"]
 [ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="2_30ttx"]
 [ext_resource type="PackedScene" uid="uid://5vkn5g6f1cej" path="res://obstacles/Wall.tscn" id="3_30ttx"]
-[ext_resource type="Texture2D" uid="uid://bve6gbcldtlm3" path="res://assets/flag.png" id="4_1fj2u"]
 
 [node name="LevelMenu" type="Node2D" unique_id=1966821203]
 
@@ -14,8 +13,3 @@
 [node name="Line2D" parent="." unique_id=1492645752 instance=ExtResource("3_30ttx")]
 position = Vector2(-606, -59)
 points = PackedVector2Array(292, -128, 271, 225, 445, 285, 921, 312, 923, -202, 384, -177, 288, -125)
-
-[node name="Flag" type="Sprite2D" parent="." unique_id=1378138758]
-position = Vector2(218, -111)
-scale = Vector2(0.13233158, 0.13233158)
-texture = ExtResource("4_1fj2u")
