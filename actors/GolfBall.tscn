@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dnfk0nrfuxm8u" path="res://actors/golf_ball.gd" id="1_aroa1"]
 [ext_resource type="Texture2D" uid="uid://c5hn1obh7xsrg" path="res://actors/wcircle.png" id="1_jx5ha"]
 [ext_resource type="Script" uid="uid://clkliugbur4fs" path="res://actors/drag_launcher.gd" id="3_o337p"]
+[ext_resource type="Script" uid="uid://bvgehwvorv87" path="res://actors/aim_visualizer.gd" id="4_cokdb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jx5ha"]
 radius = 4.0
@@ -22,3 +23,8 @@ shape = SubResource("CircleShape2D_jx5ha")
 
 [node name="DragLauncher" type="Node2D" parent="." unique_id=783968691]
 script = ExtResource("3_o337p")
+
+[node name="AimVisualizer" type="Node2D" parent="." unique_id=850492863]
+script = ExtResource("4_cokdb")
+
+[node name="ArrowLine" type="Line2D" parent="AimVisualizer" unique_id=856620626]
