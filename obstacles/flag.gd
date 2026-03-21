@@ -2,7 +2,36 @@ extends Area2D
 
 @export var this_level: GameManager.LevelId = GameManager.LevelId.LEVEL_01
 
+var required_dimension: int = 0
+
+func _ready() -> void:
+	monitoring = true
+	collision_layer = 0
+	collision_mask = 1
+	
+	required_dimension = _find_dimension_index()
+
+func _find_dimension_index() -> int:
+	# Primary: direct parent LayerX
+	var parent = get_parent()
+	if parent and parent.name.begins_with("Layer"):
+		var num_str = parent.name.substr(5)
+		if num_str.is_valid_int():
+			return num_str.to_int()
+	
+	# Fallback: meta search
+	var node = self
+	while node:
+		if node.has_meta("dim_index"):
+			return node.get_meta("dim_index")
+		node = node.get_parent()
+	
+	return 0
+
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("ball"):
+	if not body.is_in_group("ball"):
+		return
+	
+	var manager = get_tree().get_first_node_in_group("dimension_manager")
+	if manager and manager.current_index == required_dimension:
 		GameManager.complete_level(this_level)
-		# Optional: disable further triggers, play sound/animation, etc.

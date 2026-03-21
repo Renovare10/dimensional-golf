@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://3xwskkj0v6l7"]
 
-[ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="1_v5uil"]
-[ext_resource type="PackedScene" uid="uid://5vkn5g6f1cej" path="res://obstacles/Wall.tscn" id="2_5722l"]
-[ext_resource type="PackedScene" uid="uid://3jswqjkbebjp" path="res://obstacles/flag.tscn" id="3_ilhis"]
-[ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="4_ep78u"]
+[ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="1_h518d"]
+[ext_resource type="PackedScene" uid="uid://5vkn5g6f1cej" path="res://obstacles/Wall.tscn" id="2_didps"]
+[ext_resource type="PackedScene" uid="uid://3jswqjkbebjp" path="res://obstacles/flag.tscn" id="3_gia0r"]
+[ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="4_mihb8"]
 
 [node name="LevelMenu" type="Node2D" unique_id=1966821203]
 
-[node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("1_v5uil")]
+[node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("1_h518d")]
 position = Vector2(-212, 0)
 
-[node name="Line2D" parent="." unique_id=1492645752 instance=ExtResource("2_5722l")]
+[node name="Line2D" parent="." unique_id=1492645752 instance=ExtResource("2_didps")]
 position = Vector2(-613, 160)
 points = PackedVector2Array(677, -300, 1000, -300, 1000, -30, 250, -30, 250, -300, 677, -300)
 
-[node name="Flag" parent="." unique_id=1677740083 instance=ExtResource("3_ilhis")]
+[node name="Flag" parent="." unique_id=1677740083 instance=ExtResource("3_gia0r")]
 position = Vector2(247, -17)
 
-[node name="Camera" parent="." unique_id=355739319 instance=ExtResource("4_ep78u")]
+[node name="Camera" parent="." unique_id=355739319 instance=ExtResource("4_mihb8")]

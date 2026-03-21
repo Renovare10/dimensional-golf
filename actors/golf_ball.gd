@@ -8,9 +8,12 @@ extends CharacterBody2D
 
 @export var stop_speed_squared: float = 60.0
 
+var start_position: Vector2
+
 func _ready() -> void:
 	$DragLauncher.launch_requested.connect(_on_launch)
 	$DragLauncher.drag_updated.connect($AimVisualizer.update_visuals)
+	start_position = global_position
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -37,3 +40,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_launch(impulse: Vector2) -> void:
 	velocity = impulse
+	
+func respawn() -> void:
+	global_position = start_position
+	velocity = Vector2.ZERO
