@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dmyjh8yqt7xgn"]
+
+[ext_resource type="Texture2D" uid="uid://c5hn1obh7xsrg" path="res://actors/wcircle.png" id="1_jx5ha"]
+[ext_resource type="Script" uid="uid://cgrew10fb2b1k" path="res://actors/drag-movement.gd" id="1_kerl5"]
+
+[node name="Player" type="Node2D" unique_id=172437237]
+script = ExtResource("1_kerl5")
+
+[node name="Wcircle" type="Sprite2D" parent="." unique_id=1889161642]
+scale = Vector2(0.005, 0.005)
+texture = ExtResource("1_jx5ha")
