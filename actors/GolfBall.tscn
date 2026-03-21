@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dmyjh8yqt7xgn"]
+
+[ext_resource type="Script" uid="uid://dnfk0nrfuxm8u" path="res://actors/golf_ball.gd" id="1_aroa1"]
+[ext_resource type="Texture2D" uid="uid://c5hn1obh7xsrg" path="res://actors/wcircle.png" id="1_jx5ha"]
+[ext_resource type="Script" uid="uid://clkliugbur4fs" path="res://actors/drag_launcher.gd" id="3_o337p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jx5ha"]
+radius = 4.0
+
+[node name="GolfBall" type="RigidBody2D" unique_id=2116400916]
+script = ExtResource("1_aroa1")
+
+[node name="Wcircle" type="Sprite2D" parent="." unique_id=1889161642]
+scale = Vector2(0.005, 0.005)
+texture = ExtResource("1_jx5ha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=536477548]
+scale = Vector2(0.91883373, 0.91883373)
+shape = SubResource("CircleShape2D_jx5ha")
+
+[node name="DragLauncher" type="Node2D" parent="." unique_id=783968691]
+script = ExtResource("3_o337p")

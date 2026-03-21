@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8w2ho0k3a1ub"]
 
 [ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="1_hym4e"]
-[ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/Player.tscn" id="2_30ttx"]
+[ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="2_30ttx"]
 
 [node name="LevelMenu" type="Node2D" unique_id=1966821203]
 
