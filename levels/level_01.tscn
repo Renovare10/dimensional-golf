@@ -12,6 +12,7 @@
 
 [node name="LayersContainer" type="Node2D" parent="." unique_id=1459958479]
 script = ExtResource("1_mllcm")
+dimension_colors = Array[Color]([Color(0.95, 0.95, 0.98, 1), Color(1, 0.2, 0.2, 1), Color(1, 0.55, 0, 1), Color(1, 1, 0.2, 1), Color(0.2, 1, 0.2, 1), Color(0.2, 0.65, 1, 1), Color(0.55, 0.1, 1, 1), Color(0.85, 0.1, 0.9, 1)])
 transition_time = 0.1
 
 [node name="Layer0" type="Node2D" parent="LayersContainer" unique_id=155930399]
