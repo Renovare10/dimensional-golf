@@ -18,7 +18,7 @@ func setup(l: Array[Node2D], _colors: Array[Color], _t: float, _o: float, _r: fl
 		original_positions.append(layer.position)  # store exact editor position
 	_update_visuals_instant()
 
-func animate_switch(current_index: int) -> void:
+func animate_switch(current_index: int, duration: float = 0.38) -> void:
 	if tween and tween.is_running(): tween.kill()
 	tween = get_tree().create_tween().set_parallel(true).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	
@@ -48,9 +48,9 @@ func animate_switch(current_index: int) -> void:
 		var target_pos = original_positions[i] + Vector2(0, offset_y)
 		
 		layer.z_index = 10 if rel == 0 else -abs(rel)
-		tween.tween_property(layer, "position", target_pos, 0.38)
-		tween.tween_property(layer, "scale", Vector2(target_scale, target_scale), 0.38)
-		tween.tween_property(layer, "modulate:a", target_alpha, 0.38)
+		tween.tween_property(layer, "position", target_pos, duration)      # ← now uses real time
+		tween.tween_property(layer, "scale", Vector2(target_scale, target_scale), duration)
+		tween.tween_property(layer, "modulate:a", target_alpha, duration)
 		_tint_layer(layer)
 
 func _update_visuals_instant() -> void:
