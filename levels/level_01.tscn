@@ -42,6 +42,7 @@ points = PackedVector2Array(677, -300, 1000, -300, 1000, -30, 250, -30, 250, -30
 
 [node name="Visualizer" type="Node" parent="LayersContainer" unique_id=1980243637]
 script = ExtResource("4_j0sdw")
+nearby_opacity = 0.1
 
 [node name="SafeAreaGenerator" type="Node" parent="LayersContainer" unique_id=652171937]
 script = ExtResource("5_jy02f")
