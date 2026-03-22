@@ -1,20 +1,68 @@
-[gd_scene format=3 uid="uid://3xwskkj0v6l7"]
+[gd_scene format=3 uid="uid://iotidj2weygv"]
 
 [ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="1_h518d"]
+[ext_resource type="Script" uid="uid://d1ialuwo58pk4" path="res://levels/dimension_manager.gd" id="1_mihb8"]
 [ext_resource type="PackedScene" uid="uid://5vkn5g6f1cej" path="res://obstacles/Wall.tscn" id="2_didps"]
 [ext_resource type="PackedScene" uid="uid://3jswqjkbebjp" path="res://obstacles/flag.tscn" id="3_gia0r"]
+[ext_resource type="Script" uid="uid://8jihn6lifi80" path="res://levels/dimension_visualizer.gd" id="4_2owmk"]
 [ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="4_mihb8"]
+[ext_resource type="Script" uid="uid://cx8q2ienv758f" path="res://levels/safe_area_generator.gd" id="5_cwmx8"]
+[ext_resource type="Theme" uid="uid://c7pghx5dlqhfd" path="res://ui/GameText.tres" id="8_2owmk"]
 
-[node name="LevelMenu" type="Node2D" unique_id=1966821203]
+[node name="Level" type="Node2D" unique_id=1966821203]
+
+[node name="LayersContainer" type="Node2D" parent="." unique_id=1459958479]
+script = ExtResource("1_mihb8")
+dimension_colors = Array[Color]([Color(0.95, 0.95, 0.98, 1), Color(1, 0.2, 0.2, 1), Color(1, 0.55, 0, 1), Color(1, 1, 0.2, 1), Color(0.2, 1, 0.2, 1), Color(0.2, 0.65, 1, 1), Color(0.55, 0.1, 1, 1), Color(0.85, 0.1, 0.9, 1)])
+transition_time = 0.1
+
+[node name="Layer0" type="Node2D" parent="LayersContainer" unique_id=155930399]
+
+[node name="Walls" parent="LayersContainer/Layer0" unique_id=1492645752 instance=ExtResource("2_didps")]
+position = Vector2(-613, 160)
+points = PackedVector2Array(677, -300, 1000, -300, 1000, -30, 250, -30, 250, -300, 677, -300)
+
+[node name="Layer1" type="Node2D" parent="LayersContainer" unique_id=541906076]
+
+[node name="Walls" parent="LayersContainer/Layer1" unique_id=1180231711 instance=ExtResource("2_didps")]
+position = Vector2(-613, 160)
+points = PackedVector2Array(677, -300, 1000, -300, 1000, -30, 250, -30, 250, -300, 677, -300)
+
+[node name="Flag" parent="LayersContainer/Layer1" unique_id=2137422166 instance=ExtResource("3_gia0r")]
+position = Vector2(247, -17)
+this_level = 1
+
+[node name="Visualizer" type="Node" parent="LayersContainer" unique_id=1980243637]
+script = ExtResource("4_2owmk")
+nearby_opacity = 0.1
+
+[node name="SafeAreaGenerator" type="Node" parent="LayersContainer" unique_id=652171937]
+script = ExtResource("5_cwmx8")
 
 [node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("1_h518d")]
 position = Vector2(-212, 0)
 
-[node name="Line2D" parent="." unique_id=1492645752 instance=ExtResource("2_didps")]
-position = Vector2(-613, 160)
-points = PackedVector2Array(677, -300, 1000, -300, 1000, -30, 250, -30, 250, -300, 677, -300)
-
-[node name="Flag" parent="." unique_id=1677740083 instance=ExtResource("3_gia0r")]
-position = Vector2(247, -17)
-
 [node name="Camera" parent="." unique_id=355739319 instance=ExtResource("4_mihb8")]
+
+[node name="Control" type="Control" parent="." unique_id=1020876526]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=57970691]
+layout_mode = 0
+offset_left = -138.0
+offset_top = -252.0
+offset_right = 137.0
+offset_bottom = -197.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=2071368861]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer" unique_id=968417099]
+layout_mode = 2
+theme = ExtResource("8_2owmk")
+text = "Q - E"
