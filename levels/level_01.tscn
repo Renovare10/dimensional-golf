@@ -12,6 +12,7 @@
 
 [node name="LayersContainer" type="Node2D" parent="." unique_id=1459958479]
 script = ExtResource("1_mllcm")
+transition_time = 0.1
 
 [node name="Layer0" type="Node2D" parent="LayersContainer" unique_id=155930399]
 

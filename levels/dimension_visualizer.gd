@@ -4,6 +4,9 @@ extends Node
 @export var nearby_opacity: float = 0.35
 @export var distant_opacity: float = 0.08
 
+@export var nearby_scale: float = 0.78
+@export var distant_scale: float = 0.52
+
 var layers: Array[Node2D] = []
 var tween: Tween
 
@@ -31,11 +34,11 @@ func animate_switch(current_index: int) -> void:
 			target_alpha = 1.0
 		elif abs(rel) == 1:
 			target_y = rel * layer_spacing
-			target_scale = 0.78
+			target_scale = nearby_scale
 			target_alpha = nearby_opacity
 		else:
 			target_y = rel * layer_spacing * 2.0
-			target_scale = 0.52
+			target_scale = distant_scale
 			target_alpha = distant_opacity
 		
 		layer.z_index = 10 if rel == 0 else -abs(rel)
@@ -58,12 +61,12 @@ func _update_visuals_instant() -> void:
 			layer.z_index = 10
 		elif abs(rel) == 1:
 			layer.position.y = rel * layer_spacing
-			layer.scale = Vector2(0.78, 0.78)
+			layer.scale = Vector2(nearby_scale, nearby_scale)
 			layer.modulate.a = nearby_opacity
 			layer.z_index = -1
 		else:
 			layer.position.y = rel * layer_spacing * 2.0
-			layer.scale = Vector2(0.52, 0.52)
+			layer.scale = Vector2(distant_scale, distant_scale)
 			layer.modulate.a = distant_opacity
 			layer.z_index = -2
 		_tint_layer(layer)
