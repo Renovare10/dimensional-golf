@@ -28,7 +28,7 @@ position = Vector2(247, -17)
 script = ExtResource("4_j0sdw")
 nearby_opacity = 0.1
 
-[node name="SafeAreaGenerator" type="Node" parent="LayersContainer" unique_id=652171937]
+[node name="SafeAreaGenerator" type="Node2D" parent="LayersContainer" unique_id=23117027]
 script = ExtResource("5_jy02f")
 
 [node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("1_gg43x")]

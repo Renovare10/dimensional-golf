@@ -36,7 +36,7 @@ this_level = 1
 script = ExtResource("4_2owmk")
 nearby_opacity = 0.1
 
-[node name="SafeAreaGenerator" type="Node" parent="LayersContainer" unique_id=652171937]
+[node name="SafeAreaGenerator" type="Node2D" parent="LayersContainer" unique_id=1445784454]
 script = ExtResource("5_cwmx8")
 
 [node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("1_h518d")]
