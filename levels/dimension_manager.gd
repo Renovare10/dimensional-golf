@@ -14,6 +14,7 @@ var current_index: int = 0
 var ball: CharacterBody2D
 var check_timer: float = 0.0
 var grace_timer: float = 1.2
+var transition_grace: float = 0.0   # ← NEW: disables safe-area check during switch
 
 @onready var visualizer = $Visualizer
 @onready var safe_area = $SafeAreaGenerator
@@ -38,9 +39,16 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	grace_timer += delta
+	transition_grace -= delta
 	check_timer += delta
+	
 	if check_timer > 0.1:
 		check_timer = 0.0
+		
+		# Skip check entirely while transitioning
+		if transition_grace > 0.0:
+			return
+		
 		if ball and grace_timer > 0.8 and not safe_area.is_ball_in_safe_area(current_index, ball):
 			ball.respawn()
 			grace_timer = 0.0
@@ -55,6 +63,7 @@ func _input(event: InputEvent) -> void:
 
 func _switch_to(new_index: int) -> void:
 	current_index = new_index
+	transition_grace = transition_time + 0.1   # ← protects the entire animation
 	visualizer.animate_switch(current_index)
 	_update_ball_collision_mask()
 	dimension_changed.emit(current_index, dimension_colors[current_index % dimension_colors.size()])
