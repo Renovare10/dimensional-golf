@@ -28,7 +28,7 @@ position = Vector2(-613, 160)
 points = PackedVector2Array(1000, -300, 1000, -30, 839, -30, 839, -300, 1000, -300)
 
 [node name="Layer2" type="Node2D" parent="LayersContainer" unique_id=548461302]
-position = Vector2(0, -271)
+position = Vector2(0, -130)
 
 [node name="Walls" parent="LayersContainer/Layer2" unique_id=1710497902 instance=ExtResource("2_3ew82")]
 position = Vector2(-613, 160)
