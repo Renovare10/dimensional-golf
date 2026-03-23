@@ -1,7 +1,7 @@
 extends Node
 
-@export var nearby_opacity: float = 0.72
-@export var distant_opacity: float = 0.28
+@export var nearby_opacity: float = 0.1
+@export var distant_opacity: float = 0.05
 @export var distant_rotation_deg: float = 14.0
 
 var layers: Array[Node2D] = []
