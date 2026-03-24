@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ch7pirb5s5hp7"]
+
+[ext_resource type="Script" uid="uid://d1ialuwo58pk4" path="res://levels/dimension_manager.gd" id="1_yvp3a"]
+[ext_resource type="Script" uid="uid://8jihn6lifi80" path="res://levels/dimension_visualizer.gd" id="2_xysme"]
+[ext_resource type="Script" uid="uid://cx8q2ienv758f" path="res://levels/safe_area_generator.gd" id="3_if721"]
+
+[node name="DimensionSystem" type="Node2D" unique_id=1635500330]
+script = ExtResource("1_yvp3a")
+
+[node name="Visualizer" type="Node" parent="." unique_id=1836751311]
+script = ExtResource("2_xysme")
+
+[node name="SafeAreaGenerator" type="Node2D" parent="." unique_id=2067477312]
+script = ExtResource("3_if721")
