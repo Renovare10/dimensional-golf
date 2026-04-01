@@ -3,17 +3,17 @@ extends Node2D
 signal dimension_changed(index: int, color: Color)
 
 @export var dimension_colors: Array[Color] = [
-	Color(0.95, 0.95, 0.98, 1),
-	Color(1, 0.2, 0.2, 1),
-	Color(1, 0.55, 0, 1),
-	Color(1, 1, 0.2, 1),
-	Color(0.2, 1, 0.2, 1),
-	Color(0.2, 0.65, 1, 1),
-	Color(0.55, 0.1, 1, 1),
-	Color(0.85, 0.1, 0.9, 1)
+	Color(0.95, 0.97, 1.00, 1),  # Soft cool white glow
+	Color(1.00, 0.18, 0.55, 1),  # Coral pink-red
+	Color(1.00, 0.58, 0.00, 1),  # Vivid orange
+	Color(0.98, 1.00, 0.15, 1),  # Bright yellow (toned just enough)
+	Color(0.25, 1.00, 0.35, 1),  # Fresh green
+	Color(0.00, 0.98, 0.85, 1),  # Turquoise cyan
+	Color(0.20, 0.55, 1.00, 1),  # Royal electric blue
+	Color(0.55, 0.15, 0.98, 1)   # Rich violet-purple
 ]
 
-@export var transition_time: float = 0.22
+@export var transition_time: float = 0.0
 @export var inactive_opacity: float = 0.38
 @export var side_rotation_deg: float = 22.0
 @export var side_offset_x: float = 85.0

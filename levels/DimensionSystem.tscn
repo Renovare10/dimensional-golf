@@ -6,6 +6,7 @@
 
 [node name="DimensionSystem" type="Node2D" unique_id=1635500330]
 script = ExtResource("1_yvp3a")
+dimension_colors = Array[Color]([Color(1, 0.2, 0.2, 1), Color(1, 0.55, 0, 1), Color(1, 1, 0.2, 1), Color(0.2, 1, 0.2, 1), Color(0.2, 0.65, 1, 1), Color(0.55, 0.1, 1, 1), Color(0.85, 0.1, 0.9, 1), Color(0.95, 0.95, 0.98, 1)])
 
 [node name="Visualizer" type="Node" parent="." unique_id=1836751311]
 script = ExtResource("2_xysme")

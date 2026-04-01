@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="6_5pqto"]
 [ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="7_wrb7r"]
 
-[node name="Level2" type="Node2D" unique_id=1966821203]
+[node name="Level" type="Node2D" unique_id=1966821203]
 
 [node name="DimensionSystem" parent="." unique_id=1635500330 instance=ExtResource("1_3ew82")]
 
@@ -31,7 +31,7 @@ points = PackedVector2Array(613, -160, 1000, -160, 1000, -30, 250, -30, 250, -16
 
 [node name="Flag" parent="DimensionSystem/Layer2" unique_id=2137422166 instance=ExtResource("3_0bj1y")]
 position = Vector2(-277, 47)
-this_level = 1
+this_level = 2
 
 [node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("6_5pqto")]
 position = Vector2(-278, 59)
