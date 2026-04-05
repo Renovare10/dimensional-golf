@@ -13,7 +13,7 @@ func setup(m: Node2D, b: CharacterBody2D, sa: Node, trans_time: float) -> void:
 	manager = m
 	ball = b
 	safe_area = sa
-	transition_grace = trans_time + 0.18  # initial value
+	transition_grace = trans_time + 0.18
 
 func on_dimension_switched(old_index: int) -> void:
 	transition_old_index = old_index
@@ -44,7 +44,6 @@ func _check_safety() -> void:
 	else:
 		is_safe = safe_area.is_ball_in_safe_area(manager.current_index, ball)
 	
-	# ONLY enforce death/respawn AFTER the ball has been launched
 	if ball.has_been_launched and not is_safe:
 		if not safe_area.is_ball_in_safe_area(manager.current_index, ball):
 			manager.trigger_respawn()

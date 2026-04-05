@@ -28,7 +28,7 @@ var is_transitioning: bool = false
 
 @onready var visualizer = $Visualizer
 @onready var safe_area = $SafeAreaGenerator
-@onready var safety_checker = $SafetyChecker   # ← new child
+@onready var safety_checker = $SafetyChecker
 
 func _ready() -> void:
 	add_to_group("dimension_manager")
@@ -81,10 +81,17 @@ func _switch_to(new_index: int) -> void:
 	
 	dimension_changed.emit(current_index, dimension_colors[current_index % dimension_colors.size()])
 	
-	# Instant check right after switch (still respects "has_been_launched")
+	# ← GUARANTEED reset on death (after first launch)
 	if ball and ball.has_been_launched and not safe_area.is_ball_in_safe_area(current_index, ball):
-		ball.respawn()
+		trigger_respawn()
 
+# Called from safety checker AND from _switch_to() — single source of truth for death
+func trigger_respawn() -> void:
+	if ball:
+		ball.respawn()
+	_instant_switch_to_starting_dimension()
+
+# FULL reset to starting dimension (called on every death)
 func _instant_switch_to_starting_dimension() -> void:
 	if current_index == starting_index:
 		return
@@ -109,11 +116,6 @@ func is_safe_for_shooting() -> bool:
 	if not ball:
 		return true
 	return safe_area.is_ball_in_safe_area(current_index, ball)
-
-func trigger_respawn() -> void:
-	if ball:
-		ball.respawn()
-		_instant_switch_to_starting_dimension()
 
 func _update_ball_collision_mask() -> void:
 	if ball:

@@ -24,8 +24,11 @@ func setup(l: Array[Node2D], _colors: Array[Color], _t: float, _o: float, _r: fl
 	
 	_update_visuals_instant(0)  # start in dimension 0
 
-# NEW: Now accepts the current index so instant resets work correctly
+# UPDATED: Now safely kills any running tween before forcing instant state
 func _update_visuals_instant(current_idx: int = 0) -> void:
+	if tween and tween.is_running():
+		tween.kill()
+	
 	for i in layers.size():
 		var layer = layers[i]
 		var rel = i - current_idx
