@@ -9,11 +9,13 @@ extends CharacterBody2D
 @export var stop_speed_squared: float = 60.0
 
 var start_position: Vector2
+var has_been_launched: bool = false   # ← NEW: tracks whether the ball has been shot this life
 
 func _ready() -> void:
 	$DragLauncher.launch_requested.connect(_on_launch)
 	$DragLauncher.drag_updated.connect($AimVisualizer.update_visuals)
 	start_position = global_position
+	has_been_launched = false
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -40,7 +42,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_launch(impulse: Vector2) -> void:
 	velocity = impulse
-	
+	has_been_launched = true          # ← Mark that the ball has now been shot
+
 func respawn() -> void:
 	global_position = start_position
 	velocity = Vector2.ZERO
+	has_been_launched = false         # ← Reset so you can freely switch dimensions again after death
