@@ -24,13 +24,11 @@ var current_index: int = 0
 var starting_index: int = 0
 var transition_old_index: int = -1
 var ball: CharacterBody2D
-var check_timer: float = 0.0
-var grace_timer: float = 1.2
-var transition_grace: float = 0.0
 var is_transitioning: bool = false
 
 @onready var visualizer = $Visualizer
 @onready var safe_area = $SafeAreaGenerator
+@onready var safety_checker = $SafetyChecker   # ← new child
 
 func _ready() -> void:
 	add_to_group("dimension_manager")
@@ -49,42 +47,10 @@ func _ready() -> void:
 	safe_area.generate_hulls(layers, hull_padding)
 	visualizer.setup(layers, dimension_colors, transition_time, inactive_opacity, side_rotation_deg, side_offset_x)
 	
+	safety_checker.setup(self, ball, safe_area, transition_time)
+	
 	_update_ball_collision_mask()
 	dimension_changed.emit(current_index, dimension_colors[0])
-
-func _process(delta: float) -> void:
-	grace_timer += delta
-	transition_grace -= delta
-	check_timer += delta
-	
-	if check_timer > 0.1:
-		check_timer = 0.0
-		if not ball or grace_timer <= 0.8:
-			return
-		
-		var is_safe := true
-		
-		if transition_grace > 0.0 and transition_old_index != -1:
-			var safe_old = safe_area.is_ball_in_safe_area(transition_old_index, ball)
-			var safe_new = safe_area.is_ball_in_safe_area(current_index, ball)
-			is_safe = safe_old or safe_new
-		else:
-			is_safe = safe_area.is_ball_in_safe_area(current_index, ball)
-		
-		# ONLY enforce death/respawn AFTER the ball has been launched
-		if ball.has_been_launched and not is_safe:
-			if not safe_area.is_ball_in_safe_area(current_index, ball):
-				ball.respawn()
-				_instant_switch_to_starting_dimension()  # ← INSTANT reset on death
-				grace_timer = 0.0
-				transition_old_index = -1
-			return
-
-# Public method used by DragLauncher
-func is_safe_for_shooting() -> bool:
-	if not ball:
-		return true
-	return safe_area.is_ball_in_safe_area(current_index, ball)
 
 func _input(event: InputEvent) -> void:
 	if is_transitioning:
@@ -107,7 +73,7 @@ func _switch_to(new_index: int) -> void:
 	if ball:
 		ball.collision_mask = 1 << current_index
 	
-	transition_grace = transition_time + 0.18
+	safety_checker.on_dimension_switched(old_index)
 	
 	visualizer.animate_switch(current_index, transition_time)
 	
@@ -115,11 +81,10 @@ func _switch_to(new_index: int) -> void:
 	
 	dimension_changed.emit(current_index, dimension_colors[current_index % dimension_colors.size()])
 	
-	# ONLY respawn if the ball has already been launched this life
+	# Instant check right after switch (still respects "has_been_launched")
 	if ball and ball.has_been_launched and not safe_area.is_ball_in_safe_area(current_index, ball):
 		ball.respawn()
 
-# NEW: Instant switch used only on death/respawn
 func _instant_switch_to_starting_dimension() -> void:
 	if current_index == starting_index:
 		return
@@ -128,7 +93,6 @@ func _instant_switch_to_starting_dimension() -> void:
 	current_index = starting_index
 	transition_old_index = -1
 	is_transitioning = false
-	transition_grace = 0.0
 	
 	if ball:
 		ball.collision_mask = 1 << current_index
@@ -138,7 +102,18 @@ func _instant_switch_to_starting_dimension() -> void:
 
 func _on_transition_finished() -> void:
 	is_transitioning = false
-	transition_old_index = -1
+	safety_checker.on_transition_finished()
+
+# Public method used by DragLauncher
+func is_safe_for_shooting() -> bool:
+	if not ball:
+		return true
+	return safe_area.is_ball_in_safe_area(current_index, ball)
+
+func trigger_respawn() -> void:
+	if ball:
+		ball.respawn()
+		_instant_switch_to_starting_dimension()
 
 func _update_ball_collision_mask() -> void:
 	if ball:

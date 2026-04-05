@@ -1,33 +1,23 @@
 [gd_scene format=3 uid="uid://c8w2ho0k3a1ub"]
 
 [ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="1_gg43x"]
-[ext_resource type="Script" uid="uid://d1ialuwo58pk4" path="res://levels/dimension_manager.gd" id="1_mllcm"]
+[ext_resource type="PackedScene" uid="uid://ch7pirb5s5hp7" path="res://levels/DimensionSystem.tscn" id="1_mllcm"]
 [ext_resource type="PackedScene" uid="uid://5vkn5g6f1cej" path="res://obstacles/Wall.tscn" id="2_mllcm"]
 [ext_resource type="PackedScene" uid="uid://3jswqjkbebjp" path="res://obstacles/flag.tscn" id="3_q7ibo"]
 [ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="4_cg8v6"]
-[ext_resource type="Script" uid="uid://8jihn6lifi80" path="res://levels/dimension_visualizer.gd" id="4_j0sdw"]
-[ext_resource type="Script" uid="uid://cx8q2ienv758f" path="res://levels/safe_area_generator.gd" id="5_jy02f"]
 
 [node name="Level" type="Node2D" unique_id=1966821203]
 
-[node name="LayersContainer" type="Node2D" parent="." unique_id=1459958479]
-script = ExtResource("1_mllcm")
-transition_time = 0.1
+[node name="DimensionSystem" parent="." unique_id=1635500330 instance=ExtResource("1_mllcm")]
 
-[node name="Layer0" type="Node2D" parent="LayersContainer" unique_id=155930399]
+[node name="Layer0" type="Node2D" parent="DimensionSystem" unique_id=155930399]
 
-[node name="Walls" parent="LayersContainer/Layer0" unique_id=1492645752 instance=ExtResource("2_mllcm")]
+[node name="Walls" parent="DimensionSystem/Layer0" unique_id=1492645752 instance=ExtResource("2_mllcm")]
 position = Vector2(-613, 160)
 points = PackedVector2Array(677, -300, 1000, -300, 1000, -30, 250, -30, 250, -300, 677, -300)
 
-[node name="Flag" parent="LayersContainer/Layer0" unique_id=2137422166 instance=ExtResource("3_q7ibo")]
+[node name="Flag" parent="DimensionSystem/Layer0" unique_id=2137422166 instance=ExtResource("3_q7ibo")]
 position = Vector2(247, -17)
-
-[node name="Visualizer" type="Node" parent="LayersContainer" unique_id=1980243637]
-script = ExtResource("4_j0sdw")
-
-[node name="SafeAreaGenerator" type="Node2D" parent="LayersContainer" unique_id=23117027]
-script = ExtResource("5_jy02f")
 
 [node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("1_gg43x")]
 position = Vector2(-212, 0)
