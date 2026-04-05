@@ -3,14 +3,14 @@ extends Node2D
 signal dimension_changed(index: int, color: Color)
 
 @export var dimension_colors: Array[Color] = [
-	Color(0.95, 0.97, 1.00, 1),  # Soft cool white glow
-	Color(1.00, 0.18, 0.55, 1),  # Coral pink-red
-	Color(1.00, 0.58, 0.00, 1),  # Vivid orange
-	Color(0.98, 1.00, 0.15, 1),  # Bright yellow (toned just enough)
-	Color(0.25, 1.00, 0.35, 1),  # Fresh green
-	Color(0.00, 0.98, 0.85, 1),  # Turquoise cyan
-	Color(0.20, 0.55, 1.00, 1),  # Royal electric blue
-	Color(0.55, 0.15, 0.98, 1)   # Rich violet-purple
+	Color(0.95, 0.97, 1.00, 1),
+	Color(1.00, 0.18, 0.55, 1),
+	Color(1.00, 0.58, 0.00, 1),
+	Color(0.98, 1.00, 0.15, 1),
+	Color(0.25, 1.00, 0.35, 1),
+	Color(0.00, 0.98, 0.85, 1),
+	Color(0.20, 0.55, 1.00, 1),
+	Color(0.55, 0.15, 0.98, 1)
 ]
 
 @export var transition_time: float = 0.0
@@ -21,6 +21,7 @@ signal dimension_changed(index: int, color: Color)
 
 var layers: Array[Node2D] = []
 var current_index: int = 0
+var starting_index: int = 0
 var transition_old_index: int = -1
 var ball: CharacterBody2D
 var check_timer: float = 0.0
@@ -35,7 +36,6 @@ func _ready() -> void:
 	add_to_group("dimension_manager")
 	ball = get_parent().get_node_or_null("GolfBall")
 	
-	# Collect any direct children named Layer0, Layer1, etc.
 	for child in get_children():
 		if child is Node2D and child.name.begins_with("Layer"):
 			layers.append(child)
@@ -44,12 +44,13 @@ func _ready() -> void:
 			child.set_meta("dim_color", dimension_colors[idx % dimension_colors.size()])
 			_set_layer_collision_bit(child, idx)
 	
+	starting_index = 0
+	
 	safe_area.generate_hulls(layers, hull_padding)
 	visualizer.setup(layers, dimension_colors, transition_time, inactive_opacity, side_rotation_deg, side_offset_x)
 	
 	_update_ball_collision_mask()
 	dimension_changed.emit(current_index, dimension_colors[0])
-
 
 func _process(delta: float) -> void:
 	grace_timer += delta
@@ -70,13 +71,20 @@ func _process(delta: float) -> void:
 		else:
 			is_safe = safe_area.is_ball_in_safe_area(current_index, ball)
 		
-		if not is_safe:
+		# ONLY enforce death/respawn AFTER the ball has been launched
+		if ball.has_been_launched and not is_safe:
 			if not safe_area.is_ball_in_safe_area(current_index, ball):
 				ball.respawn()
+				_instant_switch_to_starting_dimension()  # ← INSTANT reset on death
 				grace_timer = 0.0
 				transition_old_index = -1
 			return
 
+# Public method used by DragLauncher
+func is_safe_for_shooting() -> bool:
+	if not ball:
+		return true
+	return safe_area.is_ball_in_safe_area(current_index, ball)
 
 func _input(event: InputEvent) -> void:
 	if is_transitioning:
@@ -86,7 +94,6 @@ func _input(event: InputEvent) -> void:
 		_switch_to((current_index + 1) % layers.size())
 	elif event.is_action_pressed("switch_layer_prev"):
 		_switch_to((current_index - 1 + layers.size()) % layers.size())
-
 
 func _switch_to(new_index: int) -> void:
 	if is_transitioning or new_index == current_index:
@@ -108,19 +115,34 @@ func _switch_to(new_index: int) -> void:
 	
 	dimension_changed.emit(current_index, dimension_colors[current_index % dimension_colors.size()])
 	
-	if ball and not safe_area.is_ball_in_safe_area(current_index, ball):
+	# ONLY respawn if the ball has already been launched this life
+	if ball and ball.has_been_launched and not safe_area.is_ball_in_safe_area(current_index, ball):
 		ball.respawn()
 
+# NEW: Instant switch used only on death/respawn
+func _instant_switch_to_starting_dimension() -> void:
+	if current_index == starting_index:
+		return
+	
+	var old_index = current_index
+	current_index = starting_index
+	transition_old_index = -1
+	is_transitioning = false
+	transition_grace = 0.0
+	
+	if ball:
+		ball.collision_mask = 1 << current_index
+	
+	visualizer._update_visuals_instant(current_index)
+	dimension_changed.emit(current_index, dimension_colors[current_index % dimension_colors.size()])
 
 func _on_transition_finished() -> void:
 	is_transitioning = false
 	transition_old_index = -1
 
-
 func _update_ball_collision_mask() -> void:
 	if ball:
 		ball.collision_layer = 1
-
 
 func _set_layer_collision_bit(layer: Node2D, idx: int) -> void:
 	var bit = 1 << idx

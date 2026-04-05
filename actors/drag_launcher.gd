@@ -17,15 +17,19 @@ func _ready() -> void:
 	if not ball:
 		push_error("DragLauncher: parent is not a CharacterBody2D! Got: " + str(get_parent()))
 
-# NEW: Check every frame – if you're already holding the mouse button and the ball
-# just slowed down enough, activate dragging and show the visualizer immediately.
+# NEW: Only allow drag/aim/shoot if the ball is in a safe area of the current dimension
+func _can_shoot() -> bool:
+	var dm = get_tree().get_first_node_in_group("dimension_manager")
+	return dm == null or dm.is_safe_for_shooting()
+
+# NEW: Only activate dragging if safe + ball is stopped
 func _process(_delta: float) -> void:
-	if not ball or not mouse_held or is_dragging:
+	if not ball or not mouse_held or is_dragging or not _can_shoot():
 		return
 	
 	if ball.velocity.length_squared() <= 400:
 		is_dragging = true
-		_update_drag_visuals()  # ← this makes the arrow appear right away
+		_update_drag_visuals()
 
 func _input(event: InputEvent) -> void:
 	if not ball:
@@ -37,8 +41,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			mouse_held = true
-			# Start immediately if the ball is already stopped
-			if ball.velocity.length_squared() <= 400:
+			# Start immediately only if already stopped AND in safe area
+			if _can_shoot() and ball.velocity.length_squared() <= 400:
 				is_dragging = true
 				_update_drag_visuals()
 		else:  # released
@@ -46,6 +50,9 @@ func _input(event: InputEvent) -> void:
 			if is_dragging:
 				is_dragging = false
 				if vec_from_ball.length() >= 5.0:
+					if not _can_shoot():
+						drag_updated.emit(0.0, Vector2.ZERO)
+						return  # block launch
 					var power_ratio = clamp((vec_from_ball.length() / drag_distance_for_max) * power_curve, 0.0, 1.0)
 					var dir = -vec_from_ball.normalized()
 					var strength = max_power * power_ratio
