@@ -124,11 +124,11 @@ func _update_ball_collision_mask() -> void:
 func _set_layer_collision_bit(layer: Node2D, idx: int) -> void:
 	var bit = 1 << idx
 	for n in layer.get_children():
-		if n is StaticBody2D:
+		if n is StaticBody2D or n is Area2D:
 			n.collision_layer = bit
 		for s in n.get_children():
-			if s is StaticBody2D:
+			if s is StaticBody2D or s is Area2D:
 				s.collision_layer = bit
 			for ss in s.get_children():
-				if ss is StaticBody2D:
+				if ss is StaticBody2D or ss is Area2D:
 					ss.collision_layer = bit
