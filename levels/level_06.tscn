@@ -29,12 +29,89 @@ position = Vector2(270, -61)
 position = Vector2(-144, 185)
 points = PackedVector2Array(613, -222, 2176, -222, 2176, -30, 2056.3347, -30, 1959, -221, 1851.971, -30, 1553.7891, -30, 1365, -222, 1203.9708, -30, 927.60724, -30, 759, -222, 606.87994, -30, -19, -30, -19, -222, 613, -222)
 
-[node name="Layer1" type="Node2D" parent="DimensionSystem/Layer1" unique_id=1015055561]
-position = Vector2(1863, 259)
+[node name="Layer2" type="Node2D" parent="DimensionSystem" unique_id=1015055561]
+position = Vector2(2133, 198)
 
-[node name="Walls" parent="DimensionSystem/Layer1/Layer1" unique_id=371800643 instance=ExtResource("2_j8rst")]
+[node name="Walls" parent="DimensionSystem/Layer2" unique_id=371800643 instance=ExtResource("2_j8rst")]
 position = Vector2(-144, 185)
-points = PackedVector2Array(163, -481, 313.93793, -481, 313.0667, -289, 313, -229)
+points = PackedVector2Array(14, -72, 193, -287, 94, -481, 313.93793, -481, 313.0667, -289, 312, -73, 14, -73)
+
+[node name="Layer3" type="Node2D" parent="DimensionSystem" unique_id=1845800241]
+position = Vector2(2130, 607)
+
+[node name="Walls" parent="DimensionSystem/Layer3" unique_id=1614207802 instance=ExtResource("2_j8rst")]
+position = Vector2(-144, 185)
+points = PackedVector2Array(90, -231, 16, -419, 18, -482, 193, -695, 315, -695, 313.0667, -428, 183, -230, 90, -231)
+
+[node name="Layer4" type="Node2D" parent="DimensionSystem" unique_id=194412132]
+position = Vector2(2062, 606)
+
+[node name="Walls" parent="DimensionSystem/Layer4" unique_id=1565267945 instance=ExtResource("2_j8rst")]
+position = Vector2(-144, 185)
+points = PackedVector2Array(-38, 13, -37, -130, 157, -229, 81, -420, 94, -481, 381, -481, 383, -428, 255, -231, 198, -66, -38, 12)
+
+[node name="Layer5" type="Node2D" parent="DimensionSystem" unique_id=1445930764]
+position = Vector2(1711, 690)
+
+[node name="Walls" parent="DimensionSystem/Layer5" unique_id=484033115 instance=ExtResource("2_j8rst")]
+position = Vector2(-144, 185)
+points = PackedVector2Array(-129, -145, -124, -266, 315, -215, 506, -313, 600, -313, 548, -153, 313, -74, -129, -146)
+
+[node name="Layer6" type="Node2D" parent="DimensionSystem" unique_id=582742760]
+position = Vector2(1118, 690)
+
+[node name="Walls" parent="DimensionSystem/Layer6" unique_id=1421585358 instance=ExtResource("2_j8rst")]
+position = Vector2(-166, 126)
+points = PackedVector2Array(92, -148, 103, -249, 492, -208, 927, -154, 928, -12, 486, -88, 90, -148)
+
+[node name="Layer8" type="Node2D" parent="DimensionSystem" unique_id=1488604766]
+position = Vector2(-558, 392)
+
+[node name="Walls" parent="DimensionSystem/Layer8" unique_id=1414420577 instance=ExtResource("2_j8rst")]
+position = Vector2(-166, 126)
+points = PackedVector2Array(456, -389, 527, -384, 569, -358, 588, -310, 593, -265, 596, -229, 591, -198, 571, -176, 377, -104, 235, -176, 231, -363, 320, -508, 518, -507, 736, -457, 757, -176, 927, -154, 928, -12, 712, -64, 643, -145, 634, -374, 513, -427, 363, -415, 315, -358, 310, -242, 377, -198, 430, -220, 374, -262, 353, -313, 384, -374, 456, -388)
+
+[node name="Layer7" type="Node2D" parent="DimensionSystem" unique_id=1946441890]
+position = Vector2(672, 609)
+
+[node name="Walls" parent="DimensionSystem/Layer7" unique_id=660397583 instance=ExtResource("2_j8rst")]
+position = Vector2(-166, 126)
+points = PackedVector2Array(-468, -409, -382, -510, -176, -576, 98, -582, 350, -541, 508, -406, 548, -167, 937, -124, 935, -7, 537, -68, 380, 176, 125, 293, -158, 332, -354, 316, -503, 244, -615, -50, -466, -410)
+
+[node name="Walls2" parent="DimensionSystem/Layer7" unique_id=1492783879 instance=ExtResource("2_j8rst")]
+position = Vector2(-760, 51)
+points = PackedVector2Array(751, -60, 754, -121, 833, -164, 927, -154, 933, -46, 847, -5, 752, -60)
+
+[node name="Walls3" parent="DimensionSystem/Layer7" unique_id=551317556 instance=ExtResource("2_j8rst")]
+position = Vector2(-934, -143)
+points = PackedVector2Array(751, -60, 754, -121, 833, -220, 927, -154, 920, -99, 879, -71, 849, -119, 820, -78, 752, -60)
+
+[node name="Walls4" parent="DimensionSystem/Layer7" unique_id=1373161915 instance=ExtResource("2_j8rst")]
+position = Vector2(-966, 71)
+points = PackedVector2Array(751, -60, 754, -121, 830, -215, 873, -185, 895, -162, 882, -144, 850, -143, 820, -78, 752, -60)
+
+[node name="Walls5" parent="DimensionSystem/Layer7" unique_id=296267521 instance=ExtResource("2_j8rst")]
+position = Vector2(-726, -283)
+points = PackedVector2Array(751, -60, 754, -121, 808, -144, 857, -191, 879, -181, 874, -155, 834, -127, 820, -78, 752, -60)
+
+[node name="Walls6" parent="DimensionSystem/Layer7" unique_id=1581542777 instance=ExtResource("2_j8rst")]
+position = Vector2(-1261, 297)
+points = PackedVector2Array(1015, 0, 958, 56, 825, 63, 671, -25, 602, -149, 597, -267, 619, -320, 676, -329, 803, -311, 809, -183, 829, -109, 876, -70, 942, -36, 984, -54, 1013, 1)
+
+[node name="Walls7" parent="DimensionSystem/Layer7" unique_id=1668462808 instance=ExtResource("2_j8rst")]
+position = Vector2(-101, -479)
+rotation = 1.6920096
+points = PackedVector2Array(751, -60, 754, -121, 833, -164, 927, -154, 933, -46, 847, -5, 752, -60)
+
+[node name="Walls8" parent="DimensionSystem/Layer7" unique_id=1307586840 instance=ExtResource("2_j8rst")]
+position = Vector2(-305, -833)
+rotation = 1.6920096
+points = PackedVector2Array(767.9974, -30.084396, 751.2038, -93.51921, 853.7659, -128.17496, 988.6022, -170.79161, 937.8889, -57.83069, 849.54193, -47.069107, 768.99, -30.205307)
+
+[node name="Walls9" parent="DimensionSystem/Layer7" unique_id=737225610 instance=ExtResource("2_j8rst")]
+position = Vector2(-305, -1132)
+rotation = 1.6920096
+points = PackedVector2Array(767.9974, -30.084396, 751.2038, -93.51921, 762.10925, -169.39456, 988.6022, -170.79161, 983.3799, -48.261078, 771.5938, 49.06147, 768.99, -30.205307)
 
 [node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("4_nox4o")]
 
