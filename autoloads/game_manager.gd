@@ -6,6 +6,7 @@ enum LevelId {
 	LEVEL_02,
 	LEVEL_03,
 	LEVEL_04,
+	LEVEL_05,
 	# Add more levels here as needed
 	# LAST_LEVEL = LEVEL_XX  (optional — can use .size() instead)
 }
@@ -15,6 +16,7 @@ const LEVEL_SCENES: Dictionary = {
 	LevelId.LEVEL_02: "res://levels/level_02.tscn",
 	LevelId.LEVEL_03: "res://levels/level_03.tscn",
 	LevelId.LEVEL_04: "res://levels/level_04.tscn",
+	LevelId.LEVEL_05: "res://levels/level_05.tscn",
 }
 
 var unlocked: Array[LevelId] = [LevelId.LEVEL_01]

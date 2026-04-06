@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://h14qpgfg20qu"]
+
+[ext_resource type="PackedScene" uid="uid://ch7pirb5s5hp7" path="res://levels/DimensionSystem.tscn" id="1_7d3dm"]
+[ext_resource type="PackedScene" uid="uid://5vkn5g6f1cej" path="res://obstacles/Wall.tscn" id="2_g3bu7"]
+[ext_resource type="PackedScene" uid="uid://3jswqjkbebjp" path="res://obstacles/flag.tscn" id="3_n8w53"]
+[ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="4_a6hey"]
+[ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="5_kdo1k"]
+
+[node name="Level" type="Node2D" unique_id=1966821203]
+
+[node name="DimensionSystem" parent="." unique_id=1635500330 instance=ExtResource("1_7d3dm")]
+position = Vector2(-214, 0)
+
+[node name="Layer0" type="Node2D" parent="DimensionSystem" unique_id=2090123881]
+position = Vector2(270, -61)
+
+[node name="Walls" parent="DimensionSystem/Layer0" unique_id=663095074 instance=ExtResource("2_g3bu7")]
+position = Vector2(-613, 185)
+points = PackedVector2Array(613, -222, 649, -222, 649, -30, -19, -30, -19, -222, 613, -222)
+
+[node name="Layer1" type="Node2D" parent="DimensionSystem" unique_id=1668461365]
+position = Vector2(-207, 58)
+rotation = 1.5707964
+
+[node name="Walls" parent="DimensionSystem/Layer1" unique_id=1308978794 instance=ExtResource("2_g3bu7")]
+position = Vector2(-613, 185)
+points = PackedVector2Array(298.00003, -222, 458, -222, 649, -30, -19, -30, -19, -222, 414, -222)
+
+[node name="Layer2" type="Node2D" parent="DimensionSystem" unique_id=2029983498]
+position = Vector2(-326, -418)
+rotation = -3.1415925
+
+[node name="Walls" parent="DimensionSystem/Layer2" unique_id=1623599193 instance=ExtResource("2_g3bu7")]
+position = Vector2(-613, 185)
+points = PackedVector2Array(650, -222, 456, -29, 271, -30, -19, -30, -19, -222, 650, -222)
+
+[node name="Layer3" type="Node2D" parent="DimensionSystem" unique_id=706489406]
+position = Vector2(148, -536)
+rotation = -1.5707964
+
+[node name="Walls" parent="DimensionSystem/Layer3" unique_id=7490827 instance=ExtResource("2_g3bu7")]
+position = Vector2(-613, 187)
+points = PackedVector2Array(456, -222, 650, -29, 271, -30, -19, -30, -213, -222, 457, -222)
+
+[node name="Layer4" type="Node2D" parent="DimensionSystem" unique_id=201643410]
+position = Vector2(270, 135)
+
+[node name="Flag" parent="DimensionSystem/Layer4" unique_id=2137422166 instance=ExtResource("3_n8w53")]
+position = Vector2(-551, 47)
+this_level = 4
+
+[node name="Walls" parent="DimensionSystem/Layer4" unique_id=1492645752 instance=ExtResource("2_g3bu7")]
+position = Vector2(-613, 185)
+points = PackedVector2Array(613, -222, 649, -222, 649, -30, -19, -30, -19, -222, 613, -222)
+
+[node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("4_a6hey")]
+
+[node name="Camera" parent="." unique_id=355739319 instance=ExtResource("5_kdo1k")]
