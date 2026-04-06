@@ -38,6 +38,7 @@ func _input(event: InputEvent) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var vec_from_ball = mouse_pos - ball.global_position
 
+	# === LEFT CLICK (start / release drag) ===
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			mouse_held = true
@@ -57,7 +58,16 @@ func _input(event: InputEvent) -> void:
 					var dir = -vec_from_ball.normalized()
 					var strength = max_power * power_ratio
 					launch_requested.emit(dir * strength)
-			# Always hide the visualizer after release
+			# Always hide the visualizer after release (or cancel)
+			drag_updated.emit(0.0, Vector2.ZERO)
+
+	# === RIGHT CLICK (CANCEL FIRE) ===
+	# NEW: Pressing right mouse button while dragging (or holding left) instantly cancels the aim.
+	# No shot will be fired when left mouse is released.
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		if event.pressed and (mouse_held or is_dragging):
+			is_dragging = false
+			mouse_held = false
 			drag_updated.emit(0.0, Vector2.ZERO)
 
 	elif event is InputEventMouseMotion and is_dragging:
