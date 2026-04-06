@@ -60,7 +60,7 @@ position = Vector2(-613, 185)
 points = PackedVector2Array(613, -222, 649, -222, 649, -30, 250, -30, 250, -222, 613, -222)
 
 [node name="Flag" parent="DimensionSystem/Layer10" unique_id=2137422166 instance=ExtResource("3_rpmp5")]
-position = Vector2(-23, 89)
+position = Vector2(3, 58)
 this_level = 3
 
 [node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("4_roa4n")]
