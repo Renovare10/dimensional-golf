@@ -18,14 +18,16 @@ position = Vector2(-613, 160)
 points = PackedVector2Array(677, -300, 1000, -300, 1000, -30, 250, -30, 250, -300, 677, -300)
 
 [node name="Layer1" type="Node2D" parent="DimensionSystem" unique_id=541906076]
+position = Vector2(247, 223)
+rotation = 1.5707964
+
+[node name="Flag" parent="DimensionSystem/Layer1" unique_id=2137422166 instance=ExtResource("3_gia0r")]
+position = Vector2(-11.000001, -6.9999948)
+rotation = -1.5707964
 
 [node name="Walls" parent="DimensionSystem/Layer1" unique_id=1180231711 instance=ExtResource("2_didps")]
 position = Vector2(-613, 160)
-points = PackedVector2Array(677, -300, 1000, -300, 1000, -30, 250, -30, 250, -300, 677, -300)
-
-[node name="Flag" parent="DimensionSystem/Layer1" unique_id=2137422166 instance=ExtResource("3_gia0r")]
-position = Vector2(247, -17)
-this_level = 1
+points = PackedVector2Array(519, -300, 712, -300, 712, -30, 520, -29.999992, 519.11304, 450, 250, 453, 250, -300)
 
 [node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("1_h518d")]
 position = Vector2(-212, 0)
