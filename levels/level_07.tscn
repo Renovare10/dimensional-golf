@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bm1o4seyp0o4c"]
+
+[ext_resource type="PackedScene" uid="uid://ch7pirb5s5hp7" path="res://levels/DimensionSystem.tscn" id="1_3c2ka"]
+[ext_resource type="PackedScene" uid="uid://5vkn5g6f1cej" path="res://obstacles/Wall.tscn" id="2_2j5vl"]
+[ext_resource type="PackedScene" uid="uid://3jswqjkbebjp" path="res://obstacles/flag.tscn" id="3_icb4y"]
+[ext_resource type="PackedScene" uid="uid://dmyjh8yqt7xgn" path="res://actors/GolfBall.tscn" id="4_au3d6"]
+[ext_resource type="PackedScene" uid="uid://bxlt1jm4afnon" path="res://camera/Camera.tscn" id="5_3afnj"]
+
+[node name="Level" type="Node2D" unique_id=1966821203]
+
+[node name="DimensionSystem" parent="." unique_id=1635500330 instance=ExtResource("1_3c2ka")]
+
+[node name="Flag" parent="DimensionSystem" unique_id=2137422166 instance=ExtResource("3_icb4y")]
+position = Vector2(247, -17)
+
+[node name="Layer0" type="Node2D" parent="DimensionSystem" unique_id=155930399]
+
+[node name="Walls" parent="DimensionSystem/Layer0" unique_id=1492645752 instance=ExtResource("2_2j5vl")]
+position = Vector2(-49, 363)
+rotation = -1.5707964
+points = PackedVector2Array(434, -70.999985, 300, -70.999985, 301, -257, 563, -257, 563, -65.99998)
+
+[node name="Layer1" type="Node2D" parent="DimensionSystem" unique_id=8019602]
+position = Vector2(-245, -168)
+rotation = -1.5707964
+
+[node name="Walls" parent="DimensionSystem/Layer1" unique_id=723245814 instance=ExtResource("2_2j5vl")]
+position = Vector2(158, 427)
+rotation = -1.5707964
+points = PackedVector2Array(489, -125.99994, 301, -124.999954, 301, -257, 487.72852, -257, 489, -126.99994)
+
+[node name="Layer2" type="Node2D" parent="DimensionSystem" unique_id=1254943503]
+position = Vector2(-243, -167)
+rotation = -1.5707964
+
+[node name="Walls" parent="DimensionSystem/Layer2" unique_id=407011489 instance=ExtResource("2_2j5vl")]
+position = Vector2(158, 427)
+rotation = -1.5707964
+points = PackedVector2Array(489, -125.99994, 301, -124.999954, 301, -257, 487.72852, -257, 489, -126.99994)
+
+[node name="GolfBall" parent="." unique_id=108662463 instance=ExtResource("4_au3d6")]
+position = Vector2(-212, 0)
+
+[node name="Camera" parent="." unique_id=355739319 instance=ExtResource("5_3afnj")]
