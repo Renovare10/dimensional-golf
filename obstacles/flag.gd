@@ -5,23 +5,27 @@ var required_dimension: int = 0
 func _ready() -> void:
 	monitoring = true
 	collision_mask = 1
-	
-	required_dimension = _find_dimension_index()
+	call_deferred("_setup_dimension")   # waits one frame so manager is fully ready
 
-func _find_dimension_index() -> int:
+func _setup_dimension() -> void:
+	var manager = get_tree().get_first_node_in_group("dimension_manager")
+	if not manager or not manager.layers:
+		return
+	
+	var my_layer = _find_my_layer()
+	if my_layer:
+		required_dimension = manager.layers.find(my_layer)
+	
+	if required_dimension == -1:
+		required_dimension = 0   # safety fallback
+
+func _find_my_layer() -> Node2D:
 	var node = self
 	while node:
-		if node.has_meta("dim_index"):
-			return node.get_meta("dim_index")
+		if node is Node2D and node.name.begins_with("Layer"):
+			return node
 		node = node.get_parent()
-	
-	var parent = get_parent()
-	if parent and parent.name.begins_with("Layer"):
-		var num_str = parent.name.substr(5)
-		if num_str.is_valid_int():
-			return num_str.to_int()
-	
-	return 0
+	return null
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("ball"):
