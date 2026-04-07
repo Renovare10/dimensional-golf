@@ -5,7 +5,7 @@ var required_dimension: int = 0
 func _ready() -> void:
 	monitoring = true
 	collision_mask = 1
-	call_deferred("_setup_dimension")   # waits one frame so manager is fully ready
+	call_deferred("_setup_dimension")
 
 func _setup_dimension() -> void:
 	var manager = get_tree().get_first_node_in_group("dimension_manager")
